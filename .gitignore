@@ -33,3 +33,7 @@ pnpm-debug.log*
 AGENT_REPORT.md
 CODEX_REVIEW.md
 FIX_PROMPT.md
+AGENTS.md
+CLAUDE.md
+**/AGENTS.md
+**/CLAUDE.md
