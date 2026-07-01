@@ -9,7 +9,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 h-14 w-full border-b border-[var(--border)] bg-[rgba(8,10,11,0.96)]">
       <div className="mx-auto flex h-full w-full max-w-[var(--content-max)] items-center gap-4 px-4 sm:px-6">
         <a
-          href="#protocol"
+          href="#top"
           className="flex shrink-0 items-center gap-2.5 text-[var(--text-primary)]"
           aria-label="zkAuction home"
         >
