@@ -6,7 +6,7 @@ const WalletConnect = dynamic(() => import("./WalletConnect"), { ssr: false });
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 h-14 w-full border-b border-[var(--border)] bg-[rgba(8,10,11,0.96)]">
+    <header className="sticky top-0 z-50 h-14 w-full border-b border-[var(--border)] bg-[color-mix(in_srgb,var(--color-1)_96%,transparent)]">
       <div className="mx-auto flex h-full w-full max-w-[var(--content-max)] items-center gap-4 px-4 sm:px-6">
         <a
           href="#top"

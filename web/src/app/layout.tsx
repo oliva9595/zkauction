@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Space_Mono } from "next/font/google";
 import Header from "@/components/Header";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const spaceMono = Space_Mono({
+  variable: "--font-space-mono",
+  weight: ["400", "700"],
   subsets: ["latin"],
 });
 
@@ -22,7 +23,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} h-full bg-[var(--canvas)] text-[var(--text-primary)] antialiased dark`}
+      className={`${spaceMono.variable} h-full bg-[var(--canvas)] text-[var(--text-primary)] antialiased dark`}
     >
       <body className="flex min-h-full flex-col font-sans">
         <Header />
