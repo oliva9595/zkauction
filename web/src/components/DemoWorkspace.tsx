@@ -62,7 +62,7 @@ export default function DemoWorkspace() {
   };
 
   return (
-    <div id="demo" className="demo-workspace">
+    <div className="demo-workspace">
       <div className="demo-workspace__intro">
         <div>
           <span>Live demo</span>
