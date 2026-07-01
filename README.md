@@ -2,6 +2,12 @@
 
 Private sealed-bid auctions with zero-knowledge settlement on Stellar.
 
+## Links
+
+- Live demo: https://zkauction.vercel.app
+- Demo video: https://youtu.be/myPQUYgt6oo
+- GitHub: https://github.com/oliva9595/zkauction
+
 ## Problem
 
 Sealed-bid auctions are useful for asset sales, procurement, liquidations, private RFQs, and market-making, but they are hard to run transparently on public blockchains. A naive on-chain auction reveals every bid, which leaks strategy, invites copy-trading, and can distort market behavior before settlement. A fully off-chain auction protects privacy, but participants must trust the operator to compute the winner, enforce the reserve price, handle escrow, and pay refunds correctly.
@@ -45,8 +51,8 @@ In short: private bid inputs stay off-chain, proof verification and escrow settl
 | Full settlement E2E | Passed | Auction `1` settled with real Noir/Barretenberg proof |
 | Token escrow settlement | Passed | Seller paid `70`, winner refunded `30`, losers refunded `100` each |
 | Contract escrow balance | Passed | Final native-asset balance is `0` |
-| Web demo | Local production build passed | `web` Next.js app, evidence lab, Freighter flow |
-| Public deployment | Not performed in this branch | No push and no public redeploy performed |
+| Web demo | Deployed | https://zkauction.vercel.app |
+| Demo video | Published | https://youtu.be/myPQUYgt6oo |
 
 ## Live Testnet Evidence
 
