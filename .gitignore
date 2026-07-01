@@ -15,6 +15,7 @@ next-env.d.ts
 .vercel/
 **/.vercel/
 .superpowers/
+docs/superpowers/
 
 # Environment and secrets
 .env
