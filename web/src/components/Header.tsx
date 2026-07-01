@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
 const WalletConnect = dynamic(() => import("./WalletConnect"), { ssr: false });
 
@@ -13,13 +14,16 @@ export default function Header() {
           className="flex shrink-0 items-center gap-2.5 text-[var(--text-primary)]"
           aria-label="zkAuction home"
         >
-          <span
-            className="flex size-8 shrink-0 rotate-45 items-center justify-center rounded-[5px] border-2 border-[var(--verified)] bg-[color-mix(in_srgb,var(--verified)_16%,var(--color-1))] shadow-[0_0_16px_color-mix(in_srgb,var(--verified)_45%,transparent)]"
+          <Image
+            src="/zkauction-logo-mark.png"
+            alt=""
+            width={40}
+            height={45}
+            className="size-10 shrink-0 object-contain"
             aria-hidden="true"
-          >
-            <span className="block size-3 rounded-[2px] bg-[var(--verified)]" />
-          </span>
-          <span className="text-[16px] font-bold leading-none">zkAuction</span>
+            priority
+          />
+          <span className="text-[16px] font-bold leading-none text-[var(--verified)]">zkAuction</span>
         </a>
 
         <nav
