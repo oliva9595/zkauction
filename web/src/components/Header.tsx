@@ -14,12 +14,12 @@ export default function Header() {
           aria-label="zkAuction home"
         >
           <span
-            className="flex size-6 rotate-45 items-center justify-center rounded-[3px] border border-[var(--verified)] bg-[var(--surface-elevated)]"
+            className="flex size-8 shrink-0 rotate-45 items-center justify-center rounded-[5px] border-2 border-[var(--verified)] bg-[color-mix(in_srgb,var(--verified)_16%,var(--color-1))] shadow-[0_0_16px_color-mix(in_srgb,var(--verified)_45%,transparent)]"
             aria-hidden="true"
           >
-            <span className="block size-2.5 bg-[var(--verified)]" />
+            <span className="block size-3 rounded-[2px] bg-[var(--verified)]" />
           </span>
-          <span className="text-[15px] font-semibold">zkAuction</span>
+          <span className="text-[16px] font-bold leading-none">zkAuction</span>
         </a>
 
         <nav
