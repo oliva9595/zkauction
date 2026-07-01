@@ -2,7 +2,40 @@
 
 Private sealed-bid auctions with zero-knowledge settlement on Stellar.
 
-zkAuction combines a Soroban smart contract, a Noir UltraHonk circuit, a Barretenberg proof pipeline, token escrow, and a judge/developer-focused web demo. Bidders commit sealed bids on-chain, the commit phase closes, a real ZK proof proves the settlement result, and the deployed contract finalizes the winner, refunds, seller payment, and clearing price on Stellar testnet.
+## Problem
+
+Sealed-bid auctions are useful for asset sales, procurement, liquidations, private RFQs, and market-making, but they are hard to run transparently on public blockchains. A naive on-chain auction reveals every bid, which leaks strategy, invites copy-trading, and can distort market behavior before settlement. A fully off-chain auction protects privacy, but participants must trust the operator to compute the winner, enforce the reserve price, handle escrow, and pay refunds correctly.
+
+The core challenge is to get all three properties at once:
+
+- Bid privacy before and during settlement.
+- Publicly verifiable winner and clearing price.
+- On-chain escrow settlement that does not rely on a trusted auctioneer.
+
+## Solution
+
+zkAuction implements a sealed-bid auction where bids stay private, but the final settlement is proven and enforced on Stellar. Bidders submit only commitments and escrow funds on-chain. After the commit phase closes, an off-chain prover opens the private bids inside a Noir circuit and generates an UltraHonk proof that the winner, reserve check, and clearing price were computed correctly. The Soroban contract reconstructs the public inputs from its own state, verifies the proof, and then releases escrow to the seller, winner, and losing bidders.
+
+This gives judges and developers a concrete end-to-end flow:
+
+- Commit sealed bids with token escrow on Stellar testnet.
+- Generate a real Noir/Barretenberg proof for the settlement.
+- Verify that proof inside a deployed Soroban contract.
+- Finalize seller payment, winner change, loser refunds, and settled auction state on-chain.
+- Inspect every transaction, proof artifact, and final state from the web evidence lab.
+
+## What We Built
+
+zkAuction is not only a UI mockup. The current project includes:
+
+- A Soroban auction contract deployed on Stellar testnet.
+- A Noir circuit for private bid openings and settlement constraints.
+- A Barretenberg UltraHonk proof pipeline.
+- A full testnet E2E script covering create, commit, close, prove, settle, and balance verification.
+- A Next.js web demo with Freighter actions, live testnet reads, and developer-grade evidence.
+- A completed auction `1` settled on-chain with a real proof and zero residual contract escrow balance.
+
+In short: private bid inputs stay off-chain, proof verification and escrow settlement happen on-chain, and the web demo exposes the evidence needed to independently inspect the result.
 
 ## Status
 
@@ -298,68 +331,3 @@ Settlement transfers:
 | Winner refund/change | `30` |
 | Loser bidder 1 refund | `100` |
 | Loser bidder 3 refund | `100` |
-
-## Design System
-
-The web UI uses the provided design reference:
-
-- Font: `Space Mono`, fallback `ui-sans-serif`.
-- Primary palette:
-  - `#0A0A0A` background.
-  - `#FFFFFF` foreground.
-  - `#E9301C` red accent.
-  - `#AA60E6` purple accent.
-  - `#00FFFF` cyan proof/verified accent.
-- Token-driven CSS in `web/src/app/globals.css`.
-
-## Security and Privacy Boundaries
-
-Private:
-
-- Raw bid amounts.
-- Blinding factors.
-- Witness inputs used to generate the proof.
-
-Public:
-
-- Auction configuration.
-- Commitments.
-- Winner address.
-- Clearing price.
-- Proof and public inputs.
-- Settlement transaction trail.
-
-Important properties:
-
-- The contract does not trust browser UI claims.
-- The contract reconstructs public inputs before verification.
-- Settlement is accepted only after proof verification.
-- Token escrow settlement happens inside the contract after proof validation.
-
-## Current Local Verification Snapshot
-
-Latest local checks performed after the UI redesign:
-
-```text
-npm run lint                                  PASS
-NODE_OPTIONS=--max-old-space-size=4096 npm run build  PASS
-Browser smoke at 390x844                     PASS
-Browser smoke at 1440x900                    PASS
-Evidence lab values                          PASS
-```
-
-Browser evidence confirmed:
-
-- `Space Mono` active.
-- Design palette tokens active.
-- No mobile horizontal overflow.
-- Hero and receipt visible.
-- Evidence lab displays auction `1`, `Settled`, bidder count `3`, clearing price `70`, winner `GB3G...`, proof hash, VK hash, contract ID, and settlement transaction.
-
-## Notes
-
-- No Git push was performed by Codex during the redesign.
-- No public Vercel deployment was performed after the redesign.
-- The public URL, if any, may not reflect the latest local UI until a new deployment is explicitly run.
-- `TESTNET_DEPLOYMENT.md` is the detailed deployment evidence source of truth.
-- `VERIFICATION.md` explains local ZK tool wrapper usage.
