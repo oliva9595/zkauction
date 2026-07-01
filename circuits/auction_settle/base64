@@ -1,0 +1,2 @@
+#!/bin/bash
+/mnt/c/Program\ Files/nodejs/node.exe -e "const fs = require('fs'); const data = fs.readFileSync(0, 'utf8').replace(/\\s+/g, ''); process.stdout.write(Buffer.from(data, 'base64'));"

@@ -1,0 +1,7 @@
+{
+  "name": "zkauction-root",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Root test script: delegating to web lint...\" && npm --prefix web run lint"
+  }
+}

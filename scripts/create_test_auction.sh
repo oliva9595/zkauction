@@ -1,0 +1,8 @@
+#!/bin/bash
+stellar contract invoke \
+  --id CBLIX3VYZTOF6YMEQBMI2ERCZVOJY6AE374UDEWRXELGDXKOZE5EA3GV \
+  --source deployer \
+  --network testnet \
+  -- \
+  create_auction \
+  --p '{"seller": "GB4W3UIOBSERQ45D5KU2L56WN4CZJBOKR7KXUH4QFCW2TACCZJOOBH43", "asset": "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC", "reserve_price": {"i128": 10}, "deadline": {"u64": 1782720546}, "second_price": false, "verifier": "CAFXDBEDQPPZKDCFNLXN6VBFW7HVJIFR2GQKBLVQVAMUG3AARSEKTCBC"}'

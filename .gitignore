@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs and generated caches
+.next/
+out/
+build/
+target/
+**/target/
+*.tsbuildinfo
+next-env.d.ts
+
+# Local deployment/tool state
+.vercel/
+**/.vercel/
+.superpowers/
+
+# Environment and secrets
+.env
+.env.*
+*.pem
+
+# OS and logs
+.DS_Store
+Thumbs.db
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Pipeline/reviewer scratch artifacts
+AGENT_REPORT.md
+CODEX_REVIEW.md
+FIX_PROMPT.md

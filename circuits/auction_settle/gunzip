@@ -1,0 +1,2 @@
+#!/bin/bash
+/mnt/c/Program\ Files/nodejs/node.exe -e "const fs = require('fs'); const zlib = require('zlib'); const data = fs.readFileSync(0); process.stdout.write(zlib.gunzipSync(data));"

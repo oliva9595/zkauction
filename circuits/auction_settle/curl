@@ -1,0 +1,26 @@
+#!/bin/bash
+# A simple curl to wget wrapper for bb
+output=""
+url=""
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -o)
+      output="$2"
+      shift 2
+      ;;
+    -s)
+      shift
+      ;;
+    *)
+      url="$1"
+      shift
+      ;;
+  esac
+done
+
+if [ -n "$output" ] && [ -n "$url" ]; then
+  /mnt/c/Program\ Files/nodejs/node.exe -e "const https = require('https'); const fs = require('fs'); https.get('$url', (res) => { res.pipe(fs.createWriteStream('$(wslpath -w "$output")'.replace(/\\\\/g, '/'))).on('finish', () => process.exit(0)); });"
+else
+  /mnt/c/Program\ Files/nodejs/node.exe -e "const https = require('https'); https.get('$url', (res) => { res.pipe(process.stdout); });"
+fi
